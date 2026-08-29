@@ -4,8 +4,8 @@ metadata:
   name: app-config
   namespace: devfest
 data:
-  version: "fdfffsa"
-  pippo: "ffsd"
+  version: "fdfdffsa"
+  pippo: "ffsdddf"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -13,8 +13,8 @@ metadata:
   name: backend-config
   namespace: devfest
 data:
-  version: "fcffsda"
-  pippo: "ffsd"
+  version: "fcfddfsda"
+  pippo: "ffsfdd"
 ---
 apiVersion: apps/v1
 kind: Deployment

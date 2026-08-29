@@ -78,17 +78,28 @@ func (r *RestartPlanReconciler) Reconcile(
 	// ---------------------------------------------------------
 
 	if plan.Spec.Paused {
+		if plan.Status.Phase != "Paused" ||
+			plan.Status.Message != "RestartPlan is paused" {
 
-		plan.Status.Message = "RestartPlan is paused"
+			plan.Status.Phase = "Paused"
+			plan.Status.Message = "RestartPlan is paused"
 
-		if err := r.Status().Update(
-			ctx,
-			&plan,
-		); err != nil {
-			return ctrl.Result{}, err
+			if err := r.Status().Update(ctx, &plan); err != nil {
+				return ctrl.Result{}, err
+			}
 		}
 
 		return ctrl.Result{}, nil
+	}
+
+	// RestartPlan sbloccato
+	if plan.Status.Phase == "Paused" {
+		plan.Status.Phase = "RollingOut"
+		plan.Status.Message = "RestartPlan is active"
+
+		if err := r.Status().Update(ctx, &plan); err != nil {
+			return ctrl.Result{}, err
+		}
 	}
 
 	// ---------------------------------------------------------

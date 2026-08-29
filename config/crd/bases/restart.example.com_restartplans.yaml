@@ -163,6 +163,7 @@ spec:
                       - RollingOut
                       - Completed
                       - Error
+                      - Paused
                       type: string
                   required:
                   - name
@@ -178,6 +179,7 @@ spec:
                 - Creating
                 - Created
                 - RollingOut
+                - Paused
                 - Error
                 type: string
             type: object

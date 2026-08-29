@@ -41,7 +41,7 @@ type DeploymentStatus struct {
 	Name string `json:"name"`
 
 	// Phase represents the current rollout phase.
-	// +kubebuilder:validation:Enum=Pending;RollingOut;Completed;Error
+	// +kubebuilder:validation:Enum=Pending;RollingOut;Completed;Error;Paused
 	Phase string `json:"phase,omitempty"`
 
 	// ConfigMapResourceVersion identifies the ConfigMap version
@@ -52,7 +52,7 @@ type DeploymentStatus struct {
 // RestartPlanStatus defines the observed state of RestartPlan.
 type RestartPlanStatus struct {
 	// Phase represents the current state of the RestartPlan.
-	// +kubebuilder:validation:Enum=Creating;Created;RollingOut;Error
+	// +kubebuilder:validation:Enum=Creating;Created;RollingOut;Paused;Error
 	Phase string `json:"phase,omitempty"`
 
 	// Message contains a human-readable description of the current state.
